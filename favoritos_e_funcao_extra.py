@@ -5,8 +5,8 @@ def add ():
     try:
         nome = str(input("Digite o nome da receita: "))
         origem = str(input("Digite o nome do país de origem da receita: "))
-        ingredientes = str(input("Digite os ingredientes: ")) #ainda deve ser concertado, pois está tudo em só uma string.
-        modo = str(input("Digite o modo de preparo: "))
+        ingredientes = str(input("Digite os ingredientes (sem as medidas): ")) #ainda deve ser concertado, pois está tudo em só uma string.
+        modo = str(input("Digite o modo de preparo (com as medidas dos ingredientes): "))
     except:
         print("Digite apenas com caractéres.")
     else:
