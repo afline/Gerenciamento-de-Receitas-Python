@@ -158,7 +158,7 @@ def exc_ing():
                 skip = False
             if not skip:
                 file.write(line)
-    print(f"Receitas que continham os ingredientes especificados, sendo eles {ingredientes_excluir} foram excluídas.")
+    print(f"Receitas que continham os ingredientes especificados, sendo ele(s) {ingredientes_excluir} foram excluídas.")
 
 file = open("receitas.txt", "w")
 file.write('')
