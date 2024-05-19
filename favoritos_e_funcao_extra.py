@@ -145,7 +145,7 @@ def exc_ing():
         receitas = file.readlines()
 
     ingredientes_excluir = str(input("Digite os ingredientes a serem excluídos (separados por vírgula): "))
-    ingredientes_excluir = [ing.strip().lower() for ing in ingredientes_excluir.split(",")]
+    ingredientes_excluir = [ing.strip().lower() for ing in ingredientes_excluir.split(", ")]
     
     with open("receitas.txt", "w") as file:
         skip = False
