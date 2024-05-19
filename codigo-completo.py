@@ -192,10 +192,6 @@ def exc_ing():
                 file.write(line)
     print(f"Receitas que continham os ingredientes especificados, sendo ele(s) {ingredientes_excluir} foram excluídas.")
 
-file = open("receitas.txt", "w")
-file.write('')
-file.close()
-
 
 def filtrar_por_pais():
     pais = str(input("Digite o país de origem das receitas que você deseja visualizar: "))
@@ -229,5 +225,15 @@ while True:
         exc()
     elif decisao == "Q":
         break
+    elif decisao == 'VF':
+        vis_fav()
+    elif decisao == 'FP':
+        filtrar_por_pais()
+    elif decisao == 'EI':
+        exc_ing()
+    elif decisao == 'AL':
+        aleatorio()
+    elif decisao == 'FA':
+        fav()
     else:
         print("Digite apenas alguma das letras acima!")
