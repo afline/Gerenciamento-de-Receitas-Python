@@ -148,17 +148,25 @@ def exc_ing():
 
     with open("receitas.txt", "w") as file:
         skip = False
+        receita_menos_ingredientes = []
         for line in receitas:
             if line.startswith("Nome:"):
-                skip = False
-            if line.startswith("Ingredientes:"):
+                if skip:
+                    skip = False
+                    receita_menos_ingredientes = []
+                receita_menos_ingredientes.append(line)
+            elif line.startswith("Ingredientes:"):
                 for ingrediente in ingredientes_excluir:
                     if ingrediente in line.upper():
                         skip = True
-            if not skip:
-                file.write(line)
-            if line.strip() == "":
-                skip = False
+                receita_menos_ingredientes.append(line)
+            else:
+                receita_menos_ingredientes.append(line)
+
+            if line.strip() == "" and not skip:
+                file.receita_writelines(receita_menos_ingredientes)
+                receita_menos_ingredientes = []
+
     print(f"Receitas que continham os ingredientes especificados foram excluídas.")
 
 file = open("receitas.txt", "w")
