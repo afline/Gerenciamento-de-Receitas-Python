@@ -151,13 +151,12 @@ def fav():
         lista = file.readlines()
         file.close()
         for i in range(len(lista)):
-            if lista[i] == "Nome: " + receita + "\n":
-                if '[FAVORITO]' in lista[i]:
-                    lista[i] = "Nome: " + receita + "\n"
-                    print("Receita desfavoritada!")
-                else:
-                    lista[i] = "Nome: " + receita + " [FAVORITO]" + "\n"
-                    print("Receita favoritada!")
+            if lista[i] == "Nome: " + receita + "[FAVORITO]"+ "\n":
+                lista[i] = "Nome: " + receita + "\n"
+                print("Receita desfavoritada!")
+            else:
+                lista[i] = "Nome: " + receita + " [FAVORITO]" + "\n"
+                print("Receita favoritada!")
         file = open('receitas.txt', 'w')
         file.write("")
         file.writelines(lista)
@@ -191,37 +190,31 @@ def vis_fav():
 
 def exc_ing():
     #nao funcionando
-    receitas = []
-    with open("receitas.txt", "r") as file:
-        receitas = file.readlines()
-
-    ingredientes_excluir = str(input("Digite os ingredientes a serem excluídos (separados por vírgula): "))
-    ingredientes_excluir = [ing.strip().upper() for ing in ingredientes_excluir.split(", ")]
-
-    with open("receitas.txt", "w") as file:
-        skip = False
-        receita_menos_ingredientes = []
-        for line in receitas:
-            if line.startswith("Nome:"):
-                if skip:
-                    skip = False
-                    receita_menos_ingredientes = []
-                receita_menos_ingredientes.append(line)
-            elif line.startswith("Ingredientes:"):
-                for ingrediente in ingredientes_excluir:
-                    if ingrediente in line.upper():
-                        skip = True
-                receita_menos_ingredientes.append(line)
-            else:
-                receita_menos_ingredientes.append(line)
-
-            if line.strip() == "" and not skip:
-                file.receita_writelines(receita_menos_ingredientes)
-                receita_menos_ingredientes = []
-
-    print(f"Receitas que continham os ingredientes especificados foram excluídas.")
-
-
+    while True:
+        print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
+        x = input("Digite aqui: ").upper()
+        print()
+        if x == "SAIR":
+            break
+        ingrediente = str(input("Digite o ingrediente que você deseja tirar as receitas que o contenha: ")).upper()
+        file = open('receitas.txt', 'r')
+        lista = file.readlines()
+        listaIngredientes =[]
+        file.close()
+        for i in range(len(lista)):
+            if 'Ingredientes:' in lista[i]:
+                if ingrediente in lista[i]:
+                    lista.pop(i-2)
+                    lista.pop(i-2)
+                    lista.pop(i-2)
+                    lista.pop(i-2)
+                    file2 = open('receitas.txt', 'w')
+                    file2.write('')
+                    file2.writelines(lista)
+                    file2.close()
+                    print("Excluido com sucesso!")
+                    print()
+        break
 
 def filtrar_por_pais():
     #funcionado!!
@@ -247,6 +240,7 @@ def filtrar_por_pais():
                 print()
         if counter == False:
             print(f"Não há receitas cadastradas do país {pais}.\n")
+        file.close()
         break
 
 while True:
