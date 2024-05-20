@@ -84,3 +84,6 @@ Selecione “SAIR” no menu principal para sair do sistema.
 Exceções e Tratamento de Erros
 
 O sistema lida com a ausência do arquivo CSV criando um novo arquivo quando necessário. Caso a receita buscada para atualização, exclusão ou marcação/desmarcação de favoritas não seja encontrada, uma mensagem de erro será exibida. Entradas inválidas no menu principal serão tratadas com uma mensagem de erro e uma nova solicitação de entrada.
+
+![image](https://github.com/georgenetoo/Python-Project/assets/167882901/da46d217-199c-47a4-b773-e03ffd6892cb)
+
