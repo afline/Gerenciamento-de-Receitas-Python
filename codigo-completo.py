@@ -12,15 +12,15 @@ def add ():
         try:
             nome = str(input("Digite o nome da receita: ")).upper()
             origem = str(input("Digite o nome do país de origem da receita: ")).upper()
-            ingredientes = str(input("Digite os ingredientes: ")).upper() #ainda deve ser concertado, pois está tudo em só uma string.
+            ingredientes = str(input("Digite os ingredientes (Digite os ingredientes separados em vírgulas e espaço.): ")).upper() #ainda deve ser concertado, pois está tudo em só uma string.
             modo = str(input("Digite o modo de preparo: ")).upper()
         except:
             print("Digite apenas com caractéres.")
         else:
             if nome != "x" or origem != "x" or ingredientes != "x" or modo != "x":
                 file.write(f"Nome: {nome}\n")
-                file.write(f"País de origem: {origem}\n")
-                file.write(f"Ingredientes (Digite os ingredientes separados em vírgulas e espaço.): {ingredientes}\n")
+                file.write(f"Pais de origem: {origem}\n")
+                file.write(f"Ingredientes: {ingredientes}\n")
                 file.write(f"Modo de preparo: {modo}\n")
                 file.write(f"\n")
                 file.close()
@@ -55,7 +55,7 @@ def viz ():
 
 def exc ():
     #essa serve para excluir receitas
-    #o lista.pop de vez em quando da index out of range
+    #funcionado!
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -69,9 +69,9 @@ def exc ():
         for i in range (len(lista)):
             if (lista[i]) == ("Nome: "+ receita + "\n"):
                 lista.pop(i)
-                lista.pop(i+1)
-                lista.pop(i+2)
-                lista.pop(i+3)
+                lista.pop(i)
+                lista.pop(i)
+                lista.pop(i)
                 file2 = open('receitas.txt', 'w')
                 file2.write('')
                 file2.writelines(lista)
@@ -79,10 +79,11 @@ def exc ():
                 print("Excluido com sucesso!")
                 print()
                 break
+        break
 
 def mod ():
     #essa serve para modificar
-    #funcionando na maior parte, mas fica repetindo no loop por algum motivo
+    #funcionando!
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -95,42 +96,50 @@ def mod ():
         file.close()
         for i in range (len(lista)):
             if (lista[i]) == ("Nome: " + receitaMod + "\n"):
-                print(lista)
-                print("Nome: " + receitaMod + "\n")
+                print()
                 print("Digite [N] para modificar o nome, [P] para o país de origem, [I] para ingredientes e [M] para modo.")
                 decisao = str(input("Digite aqui: ")).upper()
+                print()
                 print("Digite a nova informação: ")
                 novaInfo = str(input("Digite aqui: ")).upper()
 
                 if decisao == "N":
                     lista[i] = (f"{novaInfo}\n")
                 elif decisao == "P":
-                    lista[i+1] = (f"País de origem: {novaInfo}\n")
+                    lista[i+1] = (f"Pais de origem: {novaInfo}\n")
                 elif decisao == "I":
-                    lista[i+2] = (f"Ingredientes (Digite os ingredientes separados em vírgulas e espaço.): {novaInfo}\n")
+                    lista[i+2] = (f"Ingredientes: {novaInfo}\n")
                 elif decisao == "M":
                     lista[i+3] = (f"Modo de preparo: {novaInfo}\n")
-
-                print(lista)
                 file2 = open('receitas.txt', 'w')
                 file2.write('')
                 file2.writelines(lista)
                 file2.close()
+                print()
                 print("Modificado com sucesso!")
                 break
+        break
               
 def aleatorio():
-    with open('receitas.txt', 'r') as receitas:
-        # Leitura das linhas e armazena em uma lista
-        conteudo=receitas.read()
-        conteudo_lista=[conteudo]
-        elemento_aleatorio = random.choice(conteudo_lista)
-
-        # Exibe o elemento escolhido aleatoriamente
-        print(elemento_aleatorio)
+    #funcionando!
+        file = open('receitas.txt', 'r')
+        lista = file.readlines()
+        listaAlet = []
+        for elements in lista:
+            if elements.startswith("Nome: "):
+                listaAlet.append(elements)
+        elemento_aleatorio = random.choice(listaAlet)
+        for i in range(len(lista)):
+            if elemento_aleatorio == lista[i]:
+                print(lista[i])
+                print(lista[i+1])
+                print(lista[i+2])
+                print(lista[i+3])
+        file.close()
 
 def fav():
     # essa serve para marcar/desmarcar favoritas
+    # n tenho ctz que ta marcando mesmo
     receitas = []
     with open("receitas.txt", "r") as file:
         receitas = file.readlines()
@@ -155,6 +164,7 @@ def fav():
 
 def vis_fav():
     # Essa função serve para visualizar as receitas favoritas.
+    #nao encontra nada
     try:
         file = open("receitas.txt", "r")
         linhas = file.readlines()
@@ -172,19 +182,20 @@ def vis_fav():
 
 def exc_ing():
     # essa serve para excluir receitas que contenham certos ingredientes.
+    #apaga ingredientes e alinha abixo, mas nao as de cima. (nome e país)
     receitas = []
     with open("receitas.txt", "r") as file:
         receitas = file.readlines()
 
     ingredientes_excluir = str(input("Digite os ingredientes a serem excluídos (separados por vírgula): "))
-    ingredientes_excluir = [ing.strip().lower() for ing in ingredientes_excluir.split(", ")]
+    ingredientes_excluir = [ing.strip().upper() for ing in ingredientes_excluir.split(", ")] #lower
     
     with open("receitas.txt", "w") as file:
         skip = False
         for line in receitas:
             if line.startswith("Ingredientes:"):
                 for ingrediente in ingredientes_excluir:
-                    if ingrediente in line.lower():
+                    if ingrediente in line.upper(): #lower
                         skip = True
             if line.startswith("Receita") or line.strip() == "":
                 skip = False
@@ -194,12 +205,13 @@ def exc_ing():
 
 
 def filtrar_por_pais():
+    #nao encontra nada
     pais = str(input("Digite o país de origem das receitas que você deseja visualizar: "))
     with open('receitas.txt', 'r') as file:
         lista = file.readlines()
         encontrou = False
         for i in range(len(lista)):
-            if lista[i].strip() == f"País de origem: {pais}":
+            if lista[i].strip() == f"Pais de origem: {pais}":
                 encontrou = True
                 print(lista[i - 1].strip())  # Nome da receita
                 print(lista[i].strip())  # País de origem
@@ -212,28 +224,38 @@ def filtrar_por_pais():
 while True:
     #serve apenas para servir como uma interface pro user decidir o que deseja fazer no programa.
     print()
-    print("Digite [A] para adicionar receita, [V] para vizualizar, [M] para modificar, [E] para excluir e [Q] para quitar.")
+    print("Digite [ADD] para adicionar receita.")
+    print("Digite [VIZ] para vizualizar receita")
+    print("Digite [MOD] para modificar receita")
+    print("Digite [EXC] para excluir receita")
+    print("Digite [FAV] para marcar ou desmarcar receita como favorita.")
+    print("Digite [VFV] para vizualizar favoritos")
+    print("Digite [FPP] para filtrar receitas por país.")
+    print("Digite [EXI] para excluir receitas por ingrediente.")
+    print("Digite [ALE] para mostrar receita aleatória.")
+    print("Digite [QUI] para quitar o programa.")
+    print()
     decisao = input("Digite aqui: ").upper()
     print()
-    if decisao == "A":
+    if decisao == "ADD":
         add()
-    elif decisao == "V":
+    elif decisao == "VIZ":
         viz()
-    elif decisao == "M":
+    elif decisao == "MOD":
         mod()
-    elif decisao == "E":
+    elif decisao == "EXC":
         exc()
-    elif decisao == "Q":
+    elif decisao == "QUI":
         break
-    elif decisao == 'VF':
+    elif decisao == 'VFV':
         vis_fav()
-    elif decisao == 'FP':
+    elif decisao == 'FPP':
         filtrar_por_pais()
-    elif decisao == 'EI':
+    elif decisao == 'EXI':
         exc_ing()
-    elif decisao == 'AL':
+    elif decisao == 'ALE':
         aleatorio()
-    elif decisao == 'FA':
+    elif decisao == 'FAV':
         fav()
     else:
-        print("Digite apenas alguma das letras acima!")
+        print("Digite uma decisão válida!")
