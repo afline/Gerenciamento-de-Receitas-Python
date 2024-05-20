@@ -98,28 +98,28 @@ def mod():
     print("Receita modificada com sucesso!")
 
 def fav():
-    # essa serve para marcar/desmarcar favoritas
-    receitas = []
-    with open("receitas.txt", "r") as file:
-        receitas = file.readlines()
-
-    nome = str(input("Digite o nome da receita a ser marcada/desmarcada como favorita: "))
-    updated_receitas = []
-    skip = False
-    for line in receitas:
-        if line.strip() == nome:
-            skip = True
-        if skip and line.startswith("Favorito:"):
-            favorito_status = "sim" if "não" in line else "não"
-            line = f"Favorito: {favorito_status}\n"
-        updated_receitas.append(line)
-        if not line.strip():
-            skip = False
-
-    with open("receitas.txt", "w") as file:
-        for line in updated_receitas:
-            file.write(line)
-    print("Status de favorito atualizado com sucesso!")
+    while True:
+        print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
+        x = input("Digite aqui: ").upper()
+        print()
+        if x == "SAIR":
+            break
+        receita = str(input("Qual receita você deseja favoritar/desfavoritar? ")).upper()
+        with open('receitas.txt', 'r') as file:
+            lista = file.readlines()
+        for i in range(len(lista)):
+            if lista[i].startswith("Nome: " + receita + "\n"):
+                if '[FAVORITO]' in lista[i]:
+                    lista[i] = lista[i].replace(" [FAVORITO]", "")
+                    print("Receita desfavoritada!")
+                else:
+                    lista[i] = lista[i].strip() + " [FAVORITO]\n"
+                    print("Receita favoritada!")
+        with open('receitas.txt', 'w') as file:
+            file.write("")
+            file.writelines(lista)
+            file.close()
+        break
 
 def vis_fav():
     # Essa função serve para visualizar as receitas favoritas.
