@@ -17,17 +17,14 @@ def add ():
         except:
             print("Digite apenas com caractéres.")
         else:
-            if nome != "x" or origem != "x" or ingredientes != "x" or modo != "x":
-                file.write(f"Nome: {nome}\n")
-                file.write(f"Pais de origem: {origem}\n")
-                file.write(f"Ingredientes: {ingredientes}\n")
-                file.write(f"Modo de preparo: {modo}\n")
-                file.write(f"\n")
-                file.close()
-                print()
-                print("Adicionado com sucesso!")
-            else:
-                print("Não disponível!")
+            file.write(f"Nome: {nome}\n")
+            file.write(f"Pais de origem: {origem}\n")
+            file.write(f"Ingredientes: {ingredientes}\n")
+            file.write(f"Modo de preparo: {modo}\n")
+            file.write(f"\n")
+            file.close()
+            print()
+            print("Adicionado com sucesso!")
         break
 
 def viz ():
