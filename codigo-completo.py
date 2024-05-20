@@ -138,59 +138,31 @@ def aleatorio():
                 print(lista[i+3])
         file.close()
 
-def fav2():
-    #ainda nao funcional
+def fav():
+    #ainda nao funcional, consegue favoritar mas nao desfavoritar
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
         print()
         if x == "SAIR":
             break
-        receitaOri = str(input("Qual receita você deseja favoritar/desfavoritar? ")).upper()
+        receita = str(input("Qual receita você deseja favoritar/desfavoritar? ")).upper()
         file = open('receitas.txt', 'r')
         lista = file.readlines()
         file.close()
-        for element in lista:
-            if element == "Nome: " + receitaOri + "\n":
-                if element.endswith(" [FAVORITO]"):
-                    receitaFav = receitaOri - " [FAVORITO]"
+        for i in range(len(lista)):
+            if lista[i] == "Nome: " + receita + "\n":
+                if lista[i].endswith(" [FAVORITO]"):
+                    lista[i] = "Nome: " + receita + "\n"
+                    print("Receita desfavoritada!")
                 else:
-                    receitaFav = receitaOri + " [FAVORITO]"
-                print(receitaFav)
-        for i in range (len(lista)):
-            if lista [i] == "Nome: " + receitaOri + "\n":
-                lista[i] == "Nome: " + receitaFav + "\n"
+                    lista[i] = "Nome: " + receita + " [FAVORITO]" + "\n"
+                    print("Receita favoritada!")
         file = open('receitas.txt', 'w')
         file.write("")
         file.writelines(lista)
         file.close()
         break
-
-
-def fav():
-    # essa serve para marcar/desmarcar favoritas
-    # n tenho ctz que ta marcando mesmo
-    receitas = []
-    with open("receitas.txt", "r") as file:
-        receitas = file.readlines()
-
-    nome = str(input("Digite o nome da receita a ser marcada/desmarcada como favorita: "))
-    updated_receitas = []
-    skip = False
-    for line in receitas:
-        if line.strip() == nome:
-            skip = True
-        if skip and line.startswith("Favorito:"):
-            favorito_status = "sim" if "não" in line else "não"
-            line = f"Favorito: {favorito_status}\n"
-        updated_receitas.append(line)
-        if not line.strip():
-            skip = False
-
-    with open("receitas.txt", "w") as file:
-        for line in updated_receitas:
-            file.write(line)
-    print("Status de favorito atualizado com sucesso!")
 
 def vis_fav():
     # Essa função serve para visualizar as receitas favoritas.
@@ -211,46 +183,55 @@ def vis_fav():
         print("Nenhuma receita cadastrada.")
 
 def exc_ing():
-    # essa serve para excluir receitas que contenham certos ingredientes.
-    #apaga ingredientes e alinha abixo, mas nao as de cima. (nome e país)
+    #nao funcionando
     receitas = []
     with open("receitas.txt", "r") as file:
         receitas = file.readlines()
 
     ingredientes_excluir = str(input("Digite os ingredientes a serem excluídos (separados por vírgula): "))
-    ingredientes_excluir = [ing.strip().upper() for ing in ingredientes_excluir.split(", ")] #lower
-    
+    ingredientes_excluir = [ing.strip().upper() for ing in ingredientes_excluir.split(", ")]
+
     with open("receitas.txt", "w") as file:
         skip = False
         for line in receitas:
+            if line.startswith("Nome:"):
+                skip = False
             if line.startswith("Ingredientes:"):
                 for ingrediente in ingredientes_excluir:
-                    if ingrediente in line.upper(): #lower
+                    if ingrediente in line.upper():
                         skip = True
-            if line.startswith("Receita") or line.strip() == "":
-                skip = False
             if not skip:
                 file.write(line)
-    print(f"Receitas que continham os ingredientes especificados, sendo ele(s) {ingredientes_excluir} foram excluídas.")
+            if line.strip() == "":
+                skip = False
+    print(f"Receitas que continham os ingredientes especificados foram excluídas.")
+
 
 def filtrar_por_pais():
     #funcionado!!
-    pais = str(input("Digite o país de origem das receitas que você deseja visualizar: ")).upper()
-    file = open('receitas.txt', 'r')
-    lista = file.readlines()
-    counter = False
-    print()
-    for i in range(len(lista)):
-        counter = True
-        if lista[i].strip() == f"Pais de origem: {pais.upper()}":
-            encontrou = True
-            print(lista[i - 1].strip())  # Nome da receita
-            print(lista[i].strip())  # País de origem
-            print(lista[i + 1].strip())  # Ingredientes
-            print(lista[i + 2].strip())  # Modo de preparo
-            print()
-    if counter == False:
-        print(f"Não há receitas cadastradas do país {pais}.\n")
+    while True:
+        print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
+        x = input("Digite aqui: ").upper()
+        print()
+        if x == "SAIR":
+            break
+        pais = str(input("Digite o país de origem das receitas que você deseja visualizar: ")).upper()
+        file = open('receitas.txt', 'r')
+        lista = file.readlines()
+        counter = False
+        print()
+        for i in range(len(lista)):
+            counter = True
+            if lista[i].strip() == f"Pais de origem: {pais.upper()}":
+                encontrou = True
+                print(lista[i - 1].strip())  # Nome da receita
+                print(lista[i].strip())  # País de origem
+                print(lista[i + 1].strip())  # Ingredientes
+                print(lista[i + 2].strip())  # Modo de preparo
+                print()
+        if counter == False:
+            print(f"Não há receitas cadastradas do país {pais}.\n")
+        break
 
 while True:
     #serve apenas para servir como uma interface pro user decidir o que deseja fazer no programa.
@@ -287,6 +268,6 @@ while True:
     elif decisao == 'ALE':
         aleatorio()
     elif decisao == 'FAV':
-        fav2()
+        fav()
     else:
         print("Digite uma decisão válida!")
