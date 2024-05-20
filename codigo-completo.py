@@ -1,7 +1,7 @@
 import random
+
 def add ():
-    #essa função adiciona receitas ao código.
-    #funcionando!
+    #Função que adiciona receitas ao txt.
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -31,8 +31,7 @@ def add ():
         break
 
 def viz ():
-    #essa serve para vizualizar as receitas.
-    #funcionando!
+    #Função que vizualiza receitas do txt.
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -57,8 +56,7 @@ def viz ():
         break
 
 def exc ():
-    #essa serve para excluir receitas
-    #funcionandp
+    #Função que exclui receitas do txt.
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -89,8 +87,7 @@ def exc ():
         break
 
 def mod ():
-    #essa serve para modificar
-    #funcionando
+    #Função que modifica receitas do txt.
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -113,7 +110,7 @@ def mod ():
                 novaInfo = str(input("Digite aqui: ")).upper()
 
                 if decisao == "N":
-                    if lista[i].endswith("[FAVORITO]"):
+                    if ("[FAVORITO]") in lista[i]:
                         lista[i] = (f"Nome: {novaInfo} [FAVORITO]\n")
                     else:
                         lista[i] = (f"Nome: {novaInfo}\n")
@@ -135,24 +132,35 @@ def mod ():
         break
               
 def aleatorio():
-    #funcionando
+    #Função que printa receita aleatoria do txt
+    while True:
+        print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
+        x = input("Digite aqui: ").upper()
+        print()
+        if x == "SAIR":
+            break
         file = open('receitas.txt', 'r')
         lista = file.readlines()
         listaAlet = []
+        y = False
         for elements in lista:
             if elements.startswith("Nome: "):
                 listaAlet.append(elements)
         elemento_aleatorio = random.choice(listaAlet)
         for i in range(len(lista)):
             if elemento_aleatorio == lista[i]:
+                y = True
                 print(lista[i])
                 print(lista[i+1])
                 print(lista[i+2])
                 print(lista[i+3])
         file.close()
+        if y == False:
+            print("Sem receitas cadastradas.")
+        break
 
 def fav():
-    #funcionando
+    #Função favorita ou desfavorita receita
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -186,8 +194,7 @@ def fav():
         break
 
 def vis_fav():
-    # Essa função serve para visualizar as receitas favoritas.
-    # funciona!
+    #Função que serve para visualizar as receitas favoritas.
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -211,7 +218,7 @@ def vis_fav():
 
 
 def exc_ing():
-    #funcionando
+    #Função que exclui receitas de um ingrediente específico
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -235,6 +242,7 @@ def exc_ing():
                     file2.write('')
                     file2.writelines(lista)
                     file2.close()
+                    print()
         if y == False:
             print("Essa ingrediente não está em nenhuma receita.")
         else:
@@ -243,7 +251,7 @@ def exc_ing():
         break
 
 def filtrar_por_pais():
-    #funcionado!!
+    #Função que printa receitas filtradas por país
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -269,7 +277,7 @@ def filtrar_por_pais():
         break
 
 while True:
-    #serve apenas para servir como uma interface pro user decidir o que deseja fazer no programa.
+    #Interface pro user decidir o que deseja fazer no programa.
     print()
     print("Digite [ADD] para adicionar receita.")
     print("Digite [VIZ] para vizualizar receita")
