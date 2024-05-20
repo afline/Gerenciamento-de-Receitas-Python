@@ -1,10 +1,16 @@
 Manual do Usuário
+
 Alunos: Aline Farias Amancio, George Almerio Alves Neto, Tiago Emílio Rodrigues de Abreu, Vinícius Sposito Antonino Nogueira
+
 Grupo 4
+
 Sistema de Gerenciamento de Receitas
 
 Este manual fornece instruções sobre como usar o sistema de gerenciamento de receitas para organizar e gerenciar suas receitas favoritas.
+
+
 Funcionalidades
+
 
 Adicionar Receita: Permite adicionar uma nova receita ao sistema.
 Visualizar Receitas: Exibe todas as receitas cadastradas.
@@ -16,7 +22,10 @@ Visualizar Favoritas: Exibe todas as receitas marcadas como favoritas.
 Sugerir Receita Aleatória: Sugere uma receita aleatória do sistema.
 Excluir por Ingrediente: Exclui receitas que contenham um ingrediente específico.
 
+
+
 Passo a Passo
+
 
 Iniciar o Sistema:
 Execute o arquivo Python que contém o código do sistema. 
@@ -69,6 +78,8 @@ As receitas que contêm o ingrediente serão exibidas.
 
 Sair do Sistema:
 Selecione “SAIR” no menu principal para sair do sistema.
+
+
 
 Exceções e Tratamento de Erros
 
