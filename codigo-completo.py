@@ -151,12 +151,13 @@ def fav():
         lista = file.readlines()
         file.close()
         for i in range(len(lista)):
-            if lista[i] == "Nome: " + receita + "[FAVORITO]"+ "\n":
-                lista[i] = "Nome: " + receita + "\n"
-                print("Receita desfavoritada!")
-            else:
-                lista[i] = "Nome: " + receita + " [FAVORITO]" + "\n"
-                print("Receita favoritada!")
+            if lista[i].startswith("Nome:") and receita in lista[i]:
+                if "[FAVORITO]" in lista[i]:
+                    lista[i] = lista[i].replace("[FAVORITO]", "").strip() + "\n"
+                    print("Receita desfavoritada!")
+                else:
+                    lista[i] = lista[i].strip() + " [FAVORITO]\n"
+                    print("Receita favoritada!")
         file = open('receitas.txt', 'w')
         file.write("")
         file.writelines(lista)
