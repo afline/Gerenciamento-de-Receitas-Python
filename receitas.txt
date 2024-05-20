@@ -1,9 +1,11 @@
 Receitas.txt
 
-Carbonara
-País
+Nome: Carbonara
+
+País: 
 Itália
-Ingredientes
+
+Ingredientes:
 Ovos
 Bacon
 Vinho branco 
@@ -11,7 +13,7 @@ Queijo parmesão
 Sal
 Pimenta-do-reino
 
-Modo de preparo
+Modo de preparo:
 Leve uma panela média com cerca de 3 litros de água ao fogo alto. Quando ferver, adicione 1½  colher (sopa) de sal, junte o macarrão (200 g) e deixe cozinhar pelo tempo indicado na embalagem, ou até ficar al dente, mexendo de vez em quando para que os fios não grudem um no outro.
 
 
@@ -28,12 +30,12 @@ Agora você vai precisar fazer tudo bem rapidinho: escorra a água, transfira o 
 
 
 
-Paella
+Nome: Paella
 
-País
+País: 
 Espanha
 
-Ingredientes
+Ingredientes: 
 Arroz
 Frango
 Linguiça
@@ -49,7 +51,7 @@ Caldo de galinha
 Sal
 Azeite
 
-Modo de preparo
+Modo de preparo:
 Leve uma panela média com cerca de 3 litros de caldo de galinha ao fogo alto. Quando ferver, adicione o açafrão (uma pitada) e misture bem. Reserve.
 
 Enquanto o caldo esquenta, separe os outros ingredientes. Corte o frango (200 g) em pedaços pequenos, a linguiça (100 g) em rodelas, o pimentão (1 unidade) em tiras e pique a cebola (1 unidade) e o alho (2 dentes). 
@@ -59,12 +61,12 @@ Leve uma paellera (ou frigideira grande) ao fogo médio para aquecer. Adicione o
 Adicione o caldo de galinha quente e deixe cozinhar por 10 minutos. Acrescente o pimentão, o tomate (1 unidade, picado), as ervilhas (½ xícara de chá), os camarões (200 g) e os mexilhões (200 g). Cozinhe por mais 10 minutos, ou até o arroz estar cozido e os frutos do mar, macios. Sirva a seguir.
 
 
-Sushi
+Nome: Sushi
 
-País
+País:
 Japão
 
-Ingredientes
+Ingredientes:
 Arroz de sushi
 Alga nori
 Peixe cru (salmão, atum, etc.)
@@ -74,7 +76,7 @@ Gengibre em conserva
 Wasabi
 Molho de soja
 
-Modo de preparo
+Modo de preparo: 
 Lave o arroz de sushi (1 xícara de chá) em água corrente até a água sair limpa. Coloque o arroz em uma panela com 1 1⁄4 xícara de água e leve ao fogo médio. Quando começar a ferver, reduza o fogo e deixe cozinhar por 10 minutos. Desligue o fogo e deixe descansar por mais 10 minutos com a tampa fechada.
 
 Enquanto o arroz cozinha, prepare os ingredientes. Corte o peixe (200 g) em tiras finas, o pepino (1 unidade) e o abacate (1 unidade) em tiras.
@@ -86,12 +88,12 @@ Coloque uma folha de alga nori sobre uma esteira de bambu e espalhe uma camada f
 Com a ajuda da esteira, enrole firmemente a alga nori, pressionando bem para formar um rolo compacto. Corte o rolo em fatias de cerca de 2 cm de espessura. Sirva com gengibre em conserva, wasabi e molho de soja.
 
 
-Feijoada
+Nome: Feijoada
 
-País
+País:
 Brasil
 
-Ingredientes
+Ingredientes:
 Feijão preto
 Porco (costela, linguiça, carne seca)
 Bacon
@@ -119,12 +121,12 @@ Enquanto a feijoada cozinha, prepare os acompanhamentos. Corte a couve (1 maço)
 Sirva a feijoada acompanhada de arroz, couve, laranja e farofa.
 
 
-Gyoza
+Nome: Gyoza
 
-País
+País:
 Japão
 
-Ingredientes
+Ingredientes: 
 Carne de porco moída
 Repolho
 Cebolinha
@@ -137,7 +139,7 @@ Massa para gyoza (discos de massa)
 Óleo vegetal
 Água
 
-Modo de preparo
+Modo de preparo:
 Comece preparando o recheio. Pique finamente o repolho (1 xícara de chá) e a cebolinha (¼ xícara de chá). Rale o gengibre (1 colher de chá) e o alho (2 dentes). Em uma tigela grande, misture a carne de porco moída (200 g), o repolho, a cebolinha, o alho, o gengibre, 2 colheres de sopa de molho de soja, 1 colher de chá de óleo de gergelim e uma pitada de sal. Mexa bem até que todos os ingredientes estejam bem incorporados.
 
 Para montar os gyozas, pegue um disco de massa e coloque uma colher de chá do recheio no centro. Molhe a borda do disco com um pouco de água, dobre ao meio e pressione as bordas para selar, fazendo pequenas pregas para garantir que fique bem fechado. Repita o processo com o restante da massa e do recheio.
