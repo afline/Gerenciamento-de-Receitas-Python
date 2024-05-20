@@ -139,26 +139,27 @@ def vis_fav():
         print("Nenhuma receita cadastrada.")
 
 def exc_ing():
-    # essa serve para excluir receitas que contenham certos ingredientes.
     receitas = []
     with open("receitas.txt", "r") as file:
         receitas = file.readlines()
 
     ingredientes_excluir = str(input("Digite os ingredientes a serem excluídos (separados por vírgula): "))
-    ingredientes_excluir = [ing.strip().lower() for ing in ingredientes_excluir.split(", ")]
-    
+    ingredientes_excluir = [ing.strip().upper() for ing in ingredientes_excluir.split(", ")]
+
     with open("receitas.txt", "w") as file:
         skip = False
         for line in receitas:
+            if line.startswith("Nome:"):
+                skip = False
             if line.startswith("Ingredientes:"):
                 for ingrediente in ingredientes_excluir:
-                    if ingrediente in line.lower():
+                    if ingrediente in line.upper():
                         skip = True
-            if line.startswith("Receita") or line.strip() == "":
-                skip = False
             if not skip:
                 file.write(line)
-    print(f"Receitas que continham os ingredientes especificados, sendo ele(s) {ingredientes_excluir} foram excluídas.")
+            if line.strip() == "":
+                skip = False
+    print(f"Receitas que continham os ingredientes especificados foram excluídas.")
 
 file = open("receitas.txt", "w")
 file.write('')
