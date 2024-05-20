@@ -139,7 +139,7 @@ def aleatorio():
         file.close()
 
 def fav():
-    #ainda nao funcional, consegue favoritar mas nao desfavoritar
+    #ainda nao funcional, favorita mas nâo desfavorita
     while True:
         print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
         x = input("Digite aqui: ").upper()
@@ -152,7 +152,7 @@ def fav():
         file.close()
         for i in range(len(lista)):
             if lista[i] == "Nome: " + receita + "\n":
-                if lista[i].endswith(" [FAVORITO]"):
+                if '[FAVORITO]' in lista[i]:
                     lista[i] = "Nome: " + receita + "\n"
                     print("Receita desfavoritada!")
                 else:
@@ -166,21 +166,28 @@ def fav():
 
 def vis_fav():
     # Essa função serve para visualizar as receitas favoritas.
-    #nao encontra nada
-    try:
-        file = open("receitas.txt", "r")
-        linhas = file.readlines()
-        favorito = False
-        for linha in linhas:
-            if "Favorito: sim" in linha:
-                favorito = True
-                print("\n".join(linhas[linhas.index(linha)-4:linhas.index(linha)+1]))
+    # funciona!
+    while True:
+        print("Digite [SAIR] se desejar voltar para a tela inicial e cancelar a ação. Digite qualquer outra coisa para continuar.")
+        x = input("Digite aqui: ").upper()
+        print()
+        if x == "SAIR":
+            break
+        file = open('receitas.txt', 'r')
+        lista = file.readlines()
+        y = False
+        for i in range(len(lista)):
+            if lista[i].endswith("[FAVORITO]\n"):
+                y = True
+                print(lista[i])
+                print(lista[i+1])
+                print(lista[i+2])
+                print(lista[i+3])
                 print()
-        if not favorito:
-            print("Nenhuma receita favorita encontrada.")
-        file.close()
-    except FileNotFoundError:
-        print("Nenhuma receita cadastrada.")
+        if y == False:
+            print("Nenhuma receita foi favoritada.")
+        break
+
 
 def exc_ing():
     #nao funcionando
@@ -193,18 +200,27 @@ def exc_ing():
 
     with open("receitas.txt", "w") as file:
         skip = False
+        receita_menos_ingredientes = []
         for line in receitas:
             if line.startswith("Nome:"):
-                skip = False
-            if line.startswith("Ingredientes:"):
+                if skip:
+                    skip = False
+                    receita_menos_ingredientes = []
+                receita_menos_ingredientes.append(line)
+            elif line.startswith("Ingredientes:"):
                 for ingrediente in ingredientes_excluir:
                     if ingrediente in line.upper():
                         skip = True
-            if not skip:
-                file.write(line)
-            if line.strip() == "":
-                skip = False
+                receita_menos_ingredientes.append(line)
+            else:
+                receita_menos_ingredientes.append(line)
+
+            if line.strip() == "" and not skip:
+                file.receita_writelines(receita_menos_ingredientes)
+                receita_menos_ingredientes = []
+
     print(f"Receitas que continham os ingredientes especificados foram excluídas.")
+
 
 
 def filtrar_por_pais():
