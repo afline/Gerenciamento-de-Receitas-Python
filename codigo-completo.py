@@ -9,22 +9,19 @@ def add ():
             break
         print()
         file = open("receitas.txt", "a")
-        try:
-            nome = str(input("Digite o nome da receita: ")).upper()
-            origem = str(input("Digite o nome do país de origem da receita: ")).upper()
-            ingredientes = str(input("Digite os ingredientes (Digite os ingredientes separados em vírgulas e espaço.): ")).upper() #ainda deve ser concertado, pois está tudo em só uma string.
-            modo = str(input("Digite o modo de preparo: ")).upper()
-        except:
-            print("Digite apenas com caractéres.")
-        else:
-            file.write(f"Nome: {nome}\n")
-            file.write(f"Pais de origem: {origem}\n")
-            file.write(f"Ingredientes: {ingredientes}\n")
-            file.write(f"Modo de preparo: {modo}\n")
-            file.write(f"\n")
-            file.close()
-            print()
-            print("Adicionado com sucesso!")
+        nome = str(input("Digite o nome da receita: ")).upper()
+        origem = str(input("Digite o nome do país de origem da receita: ")).upper()
+        ingredientes = str(input("Digite os ingredientes (Digite os ingredientes separados em vírgulas e espaço.): ")).upper() #ainda deve ser concertado, pois está tudo em só uma string.
+        modo = str(input("Digite o modo de preparo: ")).upper()
+        print("Digite apenas com caractéres.")
+        file.write(f"Nome: {nome}\n")
+        file.write(f"Pais de origem: {origem}\n")
+        file.write(f"Ingredientes: {ingredientes}\n")
+        file.write(f"Modo de preparo: {modo}\n")
+        file.write(f"\n")
+        file.close()
+        print()
+        print("Adicionado com sucesso!")
         break
 
 def viz ():
